@@ -1,0 +1,2 @@
+module PositioningsHelper
+end
