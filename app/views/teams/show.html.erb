@@ -15,6 +15,11 @@
 </p>
 <p>
 
+<p>
+  <strong>Logo:</strong>
+  <br>
+  <%= image_tag @team.image %>
+</p>
 
 <p>
   <strong>Players:</strong>
@@ -40,12 +45,6 @@
       <% end %>
     </tbody>
   </table>
-</p>
-  
-<p>
-  <strong>Logo:</strong>
-  <br>
-  <%= image_tag @team.image %>
 </p>
 
 <%= link_to 'Edit', edit_team_path(@team) %> |
