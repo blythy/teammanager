@@ -1,0 +1,31 @@
+<h1>Teams</h1>
+<br >
+<table>
+  <thead>
+    <tr>
+      <th>City</th>
+      <th>Nickname</th>
+      <th>Colors</th>
+      <th>Email</th>
+      <th>Logo</th>
+      <th>Total Players</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teams.sort_by(&:city).each do |team| %>
+      <tr class="<%= cycle('oddrow', 'evenrow') -%>">
+        <td><%= team.city %></td>
+        <td><%= link_to team.nickname, team %></td>
+        <td><%= team.colors %></td>
+        <td><%= team.email %></td>
+        <td><%= image_tag team.image, size: '55' %></td>
+        <td><%= team.players.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Team', new_team_path %>

@@ -1,0 +1,33 @@
+<h1>Players</h1>
+<br >
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Number</th>
+      <th>Team</th>
+      <th>Positions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr class="<%= cycle('oddrow', 'evenrow') -%>">
+        <td><%= player.first_name %></td>
+        <td><%= player.last_name %></td>
+        <td><%= player.number %></td>
+        <td><%= player.team.city_nickname %></td>
+        <td>
+          <% player.positions.each do |position| %>
+            <%= position.code %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player', new_player_path %>

@@ -34,7 +34,7 @@
     <tbody>
       <% @team.players.each do |player| %>
       <tr>
-        <td><%= link_to player.full_name, player, :target => '_blank'  %></td>
+        <td><%= player.full_name %></td>
         <td><%= player.number %></td>
         <td>
           <% player.positions.each do |position| %>
@@ -48,4 +48,4 @@
 </p>
 
 <%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to 'Home', root_path %>

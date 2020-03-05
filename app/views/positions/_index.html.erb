@@ -1,0 +1,25 @@
+<h1>Positions</h1>
+<br >
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Code</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @positions.each do |position| %>
+      <tr class="<%= cycle('oddrow', 'evenrow') -%>">
+        <td><%= position.name %></td>
+        <td><%= position.description %></td>
+        <td><%= position.code %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Position', new_position_path %>
