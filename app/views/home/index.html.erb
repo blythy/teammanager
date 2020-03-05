@@ -1,0 +1,107 @@
+<h1>Team Manager</h1>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#Teams" data-toggle="tab">Teams</a></li>
+  <li><a href="#Players" data-toggle="tab">Players</a></li>
+  <li><a href="#Positions" data-toggle="tab">Positions</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="Teams">
+    <h1>Teams</h1>
+
+    <table>
+    <thead>
+      <tr>
+        <th>City</th>
+        <th>Nickname</th>
+        <th>Colors</th>
+        <th>Email</th>
+        <th>Logo</th>
+        <th>Total Players</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @teams.sort_by(&:city).each do |team| %>
+        <tr class="<%= cycle('oddrow', 'evenrow') -%>">
+          <td><%= team.city %></td>
+          <td><%= link_to team.nickname, team %></td>
+          <td><%= team.colors %></td>
+          <td><%= team.email %></td>
+          <td><%= image_tag team.image, size: '55' %></td>
+          <td><%= team.players.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+    <br>
+
+    <%= link_to 'New Team', new_team_path %>
+  </div>
+  <div class="tab-pane" id="Players">
+    <h1>Players</h1>
+
+    <table>
+    <thead>
+        <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Number</th>
+        <th>Team</th>
+        <th>Positions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @players.each do |player| %>
+        <tr class="<%= cycle('oddrow', 'evenrow') -%>">
+            <td><%= player.first_name %></td>
+            <td><%= player.last_name %></td>
+            <td><%= player.number %></td>
+            <td><%= player.team.city_nickname %></td>
+            <td>
+            <% player.positions.each do |position| %>
+                <%= position.code %>
+            <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Player', new_player_path %>
+    
+  </div>
+  
+  <div class="tab-pane" id="Positions">
+  <h1>Positions</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Code</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @positions.each do |position| %>
+          <tr class="<%= cycle('oddrow', 'evenrow') -%>">
+            <td><%= position.name %></td>
+            <td><%= position.description %></td>
+            <td><%= position.code %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Position', new_position_path %>
+  </div>
+</div>
